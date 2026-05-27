@@ -4,8 +4,8 @@
 class Stackimport < Formula
   desc "HyperCard stack importer"
   homepage "https://github.com/jrepp/stackimport"
-  url "https://github.com/jrepp/stackimport/archive/refs/tags/v0.2.10.tar.gz"
-  sha256 "7d8ce19f117179a010f035caa49fb08539533ea5478732df70fdd9a77c2ca257"
+  url "https://github.com/jrepp/stackimport/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "1a5edabc41a32bc25252fe1caacfdcc64cec5307850d742e020a681ec52149a9"
   license "MIT"
   head "https://github.com/jrepp/stackimport.git", branch: "master"
 
