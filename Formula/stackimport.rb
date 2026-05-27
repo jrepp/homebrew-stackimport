@@ -4,18 +4,24 @@
 class Stackimport < Formula
   desc "HyperCard stack importer"
   homepage "https://github.com/jrepp/stackimport"
-  url "https://github.com/jrepp/stackimport/archive/refs/tags/v0.2.9.tar.gz"
-  sha256 "13f343f2e69d8a98e002b3ed624f19695e81e207073c29b63c2b8737cf9545ca"
+  url "https://github.com/jrepp/stackimport/archive/refs/tags/v0.2.10.tar.gz"
+  sha256 "7d8ce19f117179a010f035caa49fb08539533ea5478732df70fdd9a77c2ca257"
   license "MIT"
   head "https://github.com/jrepp/stackimport.git", branch: "master"
 
   depends_on "cmake" => :build
 
   def install
+    cmake_args = std_cmake_args
+    if OS.mac?
+      cmake_args.reject! { |arg| arg.start_with?("-DCMAKE_OSX_ARCHITECTURES=") }
+      cmake_args << "-DCMAKE_OSX_ARCHITECTURES=#{Hardware::CPU.arch}"
+    end
+
     system "cmake", "-S", ".", "-B", "build",
                     "-DSTACKIMPORT_BUILD_TESTS=OFF",
                     "-DSTACKIMPORT_BUILD_VENDOR_TESTS=OFF",
-                    *std_cmake_args
+                    *cmake_args
     system "cmake", "--build", "build", "--target", "install"
   end
 
