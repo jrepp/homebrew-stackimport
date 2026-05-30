@@ -26,7 +26,7 @@ class Stackimport < Formula
   end
 
   test do
-    assert_match "Syntax is", shell_output("#{bin}/stackimport 2>&1", 2)
+    assert_match "Missing input path", shell_output("#{bin}/stackimport 2>&1", 4)
 
     (testpath/"smoke.c").write <<~C
       #include <stackimport_c.h>
